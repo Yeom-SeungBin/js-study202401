@@ -20,24 +20,21 @@
       약수들은 배열에 담아서 한 번에 출력해 주세요. (그래야 가로로 출력됨)
     */
 
-    var n = +prompt('정수를 입력하세요.');
-
-    function calcDivisior(...n) {
-      var cnt = 0; // 정수 n의 약수 개수
-      var div = 0; // 정수 n의 약수 
-      
-      for(var i=1; i<=n; i++) {
-        if(n%i === 0) {
-          cnt++;
+    function calcDivisior(targetNumber) {
+      var divisiors = []; // 약수들을 담을 배열
+       
+      for(var i=1; i<=targetNumber; i++) {
+        if(targetNumber % i === 0) {
+          divisiors.push(i);
         }
       }
-      
-      return cnt;
+      console.log(`${targetNumber}의 약수 : ${divisiors}`);
+      // count 변수로 숫자를 직접 세도 되지만, 약수 배열이 있으니까 요소의 개수가 약수의 개수일 것이다.
+      return divisiors.length; 
     }
 
-    console.log(calcDivisior(n));
-  
-  
+    var divCount = calcDivisor(72);
+    console.log(`약수의 개수 : ${divCount}`);
 
   </script>
   
