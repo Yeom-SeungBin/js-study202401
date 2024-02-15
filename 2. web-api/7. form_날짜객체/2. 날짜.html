@@ -12,8 +12,8 @@
     const date = new Date(); // 오늘 날짜 정보를 가진 객체.
     console.log(date.getTime()); // 날짜를 밀리초로 구함.
 
-    const millis = 1693735023000;
-    const day = new Date(millis);
+    const mills = 1693735023000;
+    const day = new Date(mills);
     console.log(day);
 
     console.log(date); 
@@ -28,7 +28,7 @@
     console.log('-----------------------------------------------');
 
     // 오늘 날짜 - 특정 날짜 (밀리초)
-    const gap = date.getTime() - millis;
+    const gap = date.getTime() - mills;
     console.log(gap);
 
     let time;
