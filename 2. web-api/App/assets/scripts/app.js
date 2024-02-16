@@ -24,7 +24,7 @@ const calculate = type => {
     mark = '-';
     currentResult -= enteredNumber;
   } else if (type === 'MULTI') {
-    mark = '*';
+    mark = 'x';
     currentResult *= enteredNumber;
   } else {
     mark = '/';
@@ -37,7 +37,7 @@ const calculate = type => {
 
   // 로그 이력 쌓기
   writeToLog(mark, originalResult, enteredNumber, currentResult);
-}
+};
 
 // 로그 이력을 만드는 함수
 const writeToLog = (operation, prevResult, number, result) => {
@@ -53,37 +53,26 @@ const writeToLog = (operation, prevResult, number, result) => {
 
   // 화면에 로그를 li로 렌더링하는 함수 호출
   renderToLog(logObject);
-}
+};
 
 // 로그 이력을 화면에 렌더링하는 함수
 // 매개변수로 객체가 전달된다면 매개변수 위치에서 디스트럭처링이 가능합니다.
-const renderToLog = (obj) => {
+const renderToLog = ({operation: mark, prevResult, number, result}) => {
 
   // li 태그 생성
   const $newLi = document.createElement('li');
   $newLi.classList.add('log-entries-item');
-  $newLi.textContent = `#${++seq}. ${obj.prevResult} ${obj.type} ${obj.enteredNumber} = ${obj.currentResult}`;
+  $newLi.textContent = `#${++seq}. ${prevResult} ${mark} ${number} = ${result}`;
 
   // ul에 추가
   $logEntries.appendChild($newLi);
 };
 
 // 더하기 버튼 이벤트 핸들러
-const addHandler = () => {
-  calculate('ADD');
-}
-
-const subHandler = () => {
-  calculate('SUB');
-}
-
-const multiHandler = () => {
-  calculate('MULTI');
-}
-
-const divideHandler = () => {
-  calculate('DIVIDE');
-}
+const addHandler = () => calculate('ADD');
+const subHandler = () => calculate('SUB');
+const multiHandler = () => calculate('MULTI');
+const divideHandler = () => calculate('DIVIDE');
 
 // ========== 이벤트 핸들러 바인딩 ========== //
 $addBtn.addEventListener('click', addHandler);
